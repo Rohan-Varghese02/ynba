@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ynba/core/colors/colors.dart';
+import 'package:ynba/views/register/register_screen.dart';
 import 'package:ynba/views/widgets/style_text.dart';
 
 class LoginFooter extends StatelessWidget {
@@ -15,8 +16,19 @@ class LoginFooter extends StatelessWidget {
           color: AppColors.primaryDark,
         ),
         GestureDetector(
-          onTap: (){
-            // Goes to register Page
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => RegisterScreen()))
+                .then((value) {
+                  if (value == 'registered') {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Registration successful. Please login.'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  }
+                });
           },
           child: StyleText(
             text: 'Register',

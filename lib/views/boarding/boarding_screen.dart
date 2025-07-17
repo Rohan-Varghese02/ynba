@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ynba/core/colors/colors.dart';
 import 'package:ynba/views/login/login_screen.dart';
-import 'package:ynba/views/splash/widgets/writing_text_animation.dart';
+import 'package:ynba/views/boarding/widgets/writing_text_animation.dart';
 import 'package:ynba/views/widgets/style_text.dart';
 
 class BoardingScreen extends StatefulWidget {
@@ -52,6 +53,7 @@ class _BoardingScreenState extends State<BoardingScreen>
         );
       }
     });
+    setOnceVisited();
   }
 
   int _currentIndex = 0;
@@ -64,6 +66,12 @@ class _BoardingScreenState extends State<BoardingScreen>
     'Visualize where your money goes',
     'Press Get Started to Use MONEY wisely',
   ];
+
+  Future<void> setOnceVisited() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.setBool('first', true);
+  }
 
   void typeWrittingAnimation() {
     if (_currentCharIndex < headline[_currentIndex].length) {

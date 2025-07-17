@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ynba/core/theme/theme.dart';
-import 'package:ynba/views/splash/boarding_screen.dart';
+import 'package:ynba/services/auth_gate.dart';
+import 'package:ynba/views/boarding/boarding_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: AppTheme.lightTheme,
-      home: BoardingScreen(),
+      home: AuthGate(),
       debugShowCheckedModeBanner: false,
     );
   }
